@@ -1,0 +1,101 @@
+/* tokens.css — design tokens (colors, spacing, radius, shadow, type scale, z-index) */
+
+:root {
+  --font-family-base: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Color palette */
+  --verid-ivory: #F7F5EF;
+  --verid-paper: #FFFFFF;
+  --verid-ink: #172033;
+  --verid-ink-deep: #0F172A;
+  --verid-indigo: #4D5FEA;
+  --verid-indigo-dark: #3B4BC9;
+  --verid-indigo-soft: #E8EBFF;
+  --verid-mint: #46C9B1;
+  --verid-mint-soft: #DDF5EE;
+  --verid-blush: #F2B8AC;
+  --verid-blush-soft: #FBE4DF;
+  --verid-muted: #667085;
+  --verid-border: #D9DDE7;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Radius scale */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+
+  /* Shadow scale */
+  --shadow-sm: 0 10px 24px -18px rgba(23, 32, 51, 0.24);
+  --shadow-md: 0 16px 34px -28px rgba(23, 32, 51, 0.3);
+  --shadow-lg: 0 22px 46px -30px rgba(23, 32, 51, 0.36);
+
+  /* Type scale */
+  --fs-body: 1rem;
+  --fs-nav: 0.906rem;
+  --fs-hero: clamp(2.9rem, 6.4vw, 6.4rem);
+  --fs-section: clamp(1.9rem, 4vw, 2.8rem);
+  --fs-sub: clamp(1.25rem, 2vw, 1.75rem);
+
+  /* Z-index scale */
+  --z-base: 0;
+  --z-decorative: 1;
+  --z-field: 2;
+  --z-subject: 3;
+  --z-content: 10;
+  --z-nav: 100;
+  --z-modal: 1000;
+
+  /*
+    Composition geometry (AMENDMENT 03 / CURVE-*).
+    Authored curve signatures — one dominant asymmetric organic edge per screen.
+    These are shared silhouettes so curves recur coherently across the site
+    rather than reading as random CSS blobs.
+  */
+  --curve-monolith: 62% 38% 72% 28% / 48% 62% 38% 52%;
+  --curve-cradle: 0 0 42% 58% / 0 0 30% 34%;
+  --curve-swell: 0 0 48% 52% / 0 0 16% 22%;
+  --curve-closing: 0 0 46% 54% / 0 0 20% 26%;
+
+  /* Field radius (decorative surfaces may exceed the structural scale) */
+  --radius-field: clamp(48px, 9vw, 140px);
+
+  /*
+    Composition rhythm (AMENDMENT 10): generous, viewport-aware vertical space
+    so each screen reads as a scene rather than a padded block.
+  */
+  --compose-gap: clamp(72px, 11vw, 160px);
+  --compose-inset: clamp(20px, 4vw, 56px);
+
+  /*
+    Navigation camouflage (COLOR-08/09, NAV-02/03/10).
+    JS sets --nav-tone / --nav-ink per scroll position; the nav surface inherits
+    the tonal character of the field beneath it instead of being a fixed bar.
+  */
+  --nav-tone: rgba(255, 255, 255, 0.94);
+  --nav-ink: var(--verid-ink);
+  --nav-edge: rgba(77, 95, 234, 0.18);
+
+  /* Extended display scale (TYPE-01 oversized editorial headline) */
+  --fs-display: clamp(3.4rem, 9vw, 8.2rem);
+  --fs-numeral: clamp(3rem, 8vw, 6rem);
+  --fs-eyebrow: 0.75rem;
+
+  /*
+    Breakpoints for reference:
+    --bp-mobile: 600px;
+    --bp-tablet: 880px;
+    --bp-desktop: 1180px;
+  */
+}

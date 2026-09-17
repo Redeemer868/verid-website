@@ -1,0 +1,320 @@
+/* solutions.css — page-specific solutions styles */
+
+/*
+  H6a — SOLUTIONS INTRO. Scheme: CURVE-01 blush field + IMAGE-01 (the image
+  crosses the blush/ivory seam) + DEPTH-01 three-layer depth.
+*/
+.solutions-intro {
+  position: relative;
+  padding: clamp(90px, 12vw, 150px) 0 clamp(60px, 8vw, 100px);
+  overflow: hidden;
+  background: var(--verid-ivory);
+}
+
+.solutions-field {
+  top: -10%;
+  bottom: -10%;
+  right: -14%;
+  width: 60%;
+  background: radial-gradient(90% 100% at 30% 40%, rgba(242, 184, 172, 0.34) 0%, rgba(242, 184, 172, 0) 70%);
+  border-radius: var(--curve-monolith);
+}
+
+.solutions-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.solutions-copy h1 {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+}
+
+.solutions-copy h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  max-width: 18ch;
+}
+
+.solutions-copy p:last-child {
+  margin: 0;
+  max-width: 54ch;
+  color: var(--verid-muted);
+  font-size: 1.08rem;
+}
+
+/* IMAGE-01: the image is pulled left so it crosses the blush/ivory seam. */
+.solutions-feature {
+  position: relative;
+  margin-left: clamp(-4rem, -5vw, 0rem);
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(242, 184, 172, 0.4);
+  border-radius: var(--radius-field) var(--radius-lg) var(--radius-field) var(--radius-lg);
+  box-shadow: 0 40px 90px -60px rgba(23, 32, 51, 0.5);
+}
+
+.solutions-feature img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: calc(var(--radius-field) - 12px) var(--radius-sm) calc(var(--radius-field) - 12px) var(--radius-sm);
+  display: block;
+}
+
+.solutions-sector,
+.outcomes,
+.values {
+  padding: 3rem 0 1.5rem;
+}
+
+.solutions-sector h2,
+.outcomes h2,
+.values h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: var(--fs-section);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+/*
+  H6 — EDITORIAL MOSAIC (IMAGE-10). Unequal proportions with one anchor:
+  banking is the large lead card; telecom and public service stack smaller
+  alongside it. No three-identical-card repetition.
+*/
+.solutions-sector {
+  position: relative;
+}
+
+.industry-field {
+  top: 0;
+  right: -12%;
+  width: 46%;
+  height: 100%;
+  background: radial-gradient(90% 90% at 60% 30%, rgba(242, 184, 172, 0.22) 0%, rgba(242, 184, 172, 0) 68%);
+  border-radius: var(--curve-monolith);
+}
+
+.industry-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  grid-template-rows: repeat(2, auto);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+/* Anchor: banking owns the full left column. */
+.industry-card--banking {
+  grid-row: 1 / span 2;
+}
+
+.industry-card {
+  background: var(--verid-paper);
+  border: 1px solid var(--verid-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.industry-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.industry-image img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: block;
+  object-fit: cover;
+}
+
+/* The anchor carries a taller, more cinematic crop. */
+.industry-card--banking .industry-image img {
+  aspect-ratio: 4 / 3.2;
+  object-position: center;
+}
+
+/* Supporting cards use wide strips. */
+.industry-card--telecom .industry-image img,
+.industry-card--public .industry-image img {
+  aspect-ratio: 16 / 9;
+  object-position: center;
+}
+
+.industry-copy {
+  padding: 1.25rem;
+}
+
+.industry-card--banking .industry-copy {
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+}
+
+.industry-card--banking .industry-copy h3 {
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+}
+
+.industry-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--verid-indigo);
+  font-weight: 700;
+}
+
+.industry-tag .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.industry-copy h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.industry-copy p {
+  margin: 0;
+  color: var(--verid-muted);
+}
+
+/*
+  H7 — OUTCOMES as a vertical narrative rail (LAYOUT-06).
+  A single connector rail threads the three outcomes; oversized numerals are
+  the anchor (TYPE-14) rather than card borders.
+*/
+.outcomes {
+  position: relative;
+  padding: clamp(80px, 10vw, 130px) 0;
+}
+
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.outcomes-copy h2 {
+  margin-top: 0.5rem;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  max-width: 16ch;
+}
+
+.outcome-list {
+  position: relative;
+  display: grid;
+  gap: clamp(1.75rem, 3vw, 2.5rem);
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 5.5rem;
+}
+
+/* The connecting rail. */
+.outcome-list::before {
+  content: "";
+  position: absolute;
+  left: 2.1rem;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(77, 95, 234, 0.45), rgba(70, 201, 177, 0.45));
+}
+
+.outcome-item {
+  position: relative;
+}
+
+/* TYPE-14 oversized numeral as the rail marker. */
+.outcome-num {
+  position: absolute;
+  left: -5.5rem;
+  top: -0.35rem;
+  width: 4.2rem;
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--verid-indigo);
+  text-align: right;
+}
+
+.outcome-body {
+  padding-bottom: 0.25rem;
+}
+
+.outcome-body p {
+  margin: 0;
+  color: var(--verid-muted);
+  max-width: 46ch;
+}
+
+.mini-pill {
+  display: inline-block;
+  margin-bottom: 0.7rem;
+  padding: 0.38rem 0.7rem;
+  border-radius: 999px;
+  background: var(--verid-mint-soft);
+  color: var(--verid-ink);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  padding-bottom: 3rem;
+}
+
+.value-card {
+  background: linear-gradient(180deg, var(--verid-paper), rgba(242, 184, 172, 0.08));
+  border: 1px solid var(--verid-border);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+}
+
+.value-card h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1.45rem;
+  letter-spacing: -0.02em;
+}
+
+.value-card p {
+  margin: 0;
+  color: var(--verid-muted);
+}
+
+@media (max-width: 880px) {
+  .solutions-grid,
+  .outcomes-grid,
+  .industry-grid,
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .solutions-feature {
+    padding: 0.75rem;
+  }
+}

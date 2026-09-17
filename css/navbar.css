@@ -1,0 +1,680 @@
+/* navbar.css — shared navbar styling */
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: calc(var(--z-nav) + 1);
+  background: var(--verid-ink);
+  color: var(--verid-paper);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: top 150ms ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/*
+  NAV-01 / NAV-02 / AMENDMENT 04:
+  The navigation is part of the opening artwork, not a detached floating pill.
+  It is a full-width surface whose tone is driven by --nav-tone / --nav-ink
+  (set in components.css and updated by nav.js as the page scrolls), so it
+  camouflages into whichever colour field sits beneath it.
+*/
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease;
+}
+
+/* Once scrolled the nav "arrives" with a defined edge (NAV-04 / COLOR-09). */
+.site-nav.scrolled {
+  border-bottom-color: var(--nav-edge);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Nav row aligns to the composition grid (NAV-05 / NAV-08). */
+.site-nav nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: min(1180px, calc(100% - 40px));
+  padding: 18px 0;
+  max-width: none;
+  margin: 0 auto;
+}
+
+/* On small screens the nav row is full-bleed so its bar and the mobile panel
+   reach both viewport edges (NAV-09 / RESP-06). */
+@media (max-width: 600px) {
+  .site-nav nav {
+    width: 100%;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+/*
+  VERID wordmark — bold text only. Kept compact so it never widens the navbar.
+  The same mark is used in the nav and footer, distinguished only by the
+  inherited colour (which flips to light on dark surfaces).
+*/
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--verid-ink);
+  flex-shrink: 0;
+  text-decoration: none;
+  transition: opacity 150ms ease;
+}
+
+.logo:hover {
+  opacity: 0.82;
+}
+
+.logo-word {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+.logo-word::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 4px;
+  border-radius: 50%;
+  background: var(--verid-mint);
+  vertical-align: 0.45em;
+}
+
+.logo-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--verid-mint);
+  display: inline-block;
+  align-self: center;
+  margin-left: 6px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: auto;
+  list-style: none;
+  white-space: nowrap;
+}
+
+.nav-links a,
+.nav-links .nav-link,
+.nav-cta {
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.2;
+  font-family: inherit;
+  color: var(--verid-ink);
+  text-rendering: optimizeLegibility;
+  transition: color 150ms ease, transform 150ms ease, background-color 150ms ease, border-color 150ms ease;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 2px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.icon--chevron {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  stroke-width: 2.2;
+  opacity: 0.6;
+  transition: transform 200ms ease, opacity 150ms ease;
+}
+
+/*
+  Nav link colour identity.
+  Each destination owns a distinct accent. The link hovers in ITS colour, and
+  while its section is the one in view it stays coloured (class .is-current is
+  applied by JS section tracking), resetting when another section takes over.
+*/
+[data-menu="home"]       { --link-accent: #4D5FEA; } /* indigo */
+[data-menu="platform"]   { --link-accent: #46C9B1; } /* mint   */
+[data-menu="solutions"]  { --link-accent: #E0755A; } /* coral  */
+[data-menu="developers"] { --link-accent: #8B5CF6; } /* violet */
+[data-menu="company"]    { --link-accent: #D89A2B; } /* amber  */
+.nav-links > li > a       { --link-accent: #4D5FEA; }
+
+/*
+  Nav link hover/active: every item in the bar changes colour and grows an
+  underline indicator on hover or keyboard focus, so the affordance is obvious
+  on both desktop and touch.
+*/
+.nav-links > li > a,
+.nav-links .nav-link {
+  position: relative;
+  transition: color 220ms ease, transform 220ms ease;
+}
+
+.nav-links > li > a::after,
+.nav-links .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--link-accent, currentColor);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 180ms ease;
+}
+
+/* Hover / focus uses the link's OWN accent colour. */
+.nav-links > li > a:hover,
+.nav-links > li > a:focus-visible,
+.nav-links .nav-link:hover,
+.nav-links .nav-link:focus-visible,
+.nav-link.is-open,
+.nav-link.is-current {
+  color: var(--link-accent);
+}
+
+.nav-links > li > a:hover::after,
+.nav-links > li > a:focus-visible::after,
+.nav-links .nav-link:hover::after,
+.nav-links .nav-link:focus-visible::after,
+.nav-link.is-open::after,
+.nav-link.is-current::after {
+  transform: scaleX(1);
+}
+
+.nav-link:hover .icon--chevron,
+.nav-link.is-open .icon--chevron {
+  opacity: 1;
+}
+
+.nav-link.is-open .icon--chevron {
+  transform: rotate(180deg);
+}
+
+.nav-links a[aria-current="page"],
+.nav-link[aria-current="page"] {
+  color: var(--verid-indigo);
+  font-weight: 600;
+}
+
+.nav-links a[aria-current="page"]:hover,
+.nav-link[aria-current="page"]:hover {
+  color: var(--verid-indigo);
+}
+
+/*
+  Nav CTA ("Try the demo") — its own signature accent, distinct from the five
+  link colours, that transitions on hover and on keyboard focus.
+*/
+.nav-cta {
+  --cta-accent: #F05A7E; /* rose — the action colour, unique to the demo CTA */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.1rem;
+  border-radius: var(--radius-sm);
+  background: var(--cta-accent);
+  color: var(--verid-paper);
+  box-shadow: var(--shadow-sm);
+  margin-left: 0;
+  transition: background-color 200ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.nav-cta:hover,
+.nav-cta:focus-visible {
+  background: #E11D6E;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md), 0 0 0 3px rgba(240, 90, 126, 0.28);
+}
+
+.site-nav .nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  margin-left: auto;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--verid-ink);
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.site-nav .nav-toggle:hover,
+.site-nav .nav-toggle:focus-visible {
+  background: rgba(23, 32, 51, 0.06);
+}
+
+/*
+  The icon (an inline SVG) must never be the tap target. Lucide draws thin
+ <line>/<path> strokes, and a finger tap usually lands on the SVG rather than
+  the button — which is why the hamburger only "sometimes" responded. Making
+  the icon transparent to pointer events routes every tap to the button itself.
+*/
+.site-nav .nav-toggle > *,
+.site-nav .nav-toggle svg,
+.site-nav .nav-toggle svg * {
+  pointer-events: none;
+}
+
+.site-nav .icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  flex: 0 0 20px;
+  pointer-events: none;
+}
+
+#mobile-nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+  background: var(--verid-paper);
+  border: 0;
+  border-top: 1px solid rgba(77, 95, 234, 0.14);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 16px 18px;
+  padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: calc(var(--z-nav) - 1);
+  overflow: hidden;
+}
+
+/* nav.js keeps the panel in sync via the `hidden` attribute and the
+   `.open` class on the navbar. The [hidden] guard must win so a stale
+   `.open` class can never leave the panel visible when it is closed. */
+#mobile-nav[hidden] {
+  display: none;
+}
+
+.site-nav.open #mobile-nav {
+  display: block;
+  animation: mobile-menu-in 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+#mobile-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#mobile-nav a:not(.nav-cta) {
+  display: block;
+  padding: 14px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--verid-ink);
+  transition: background-color 150ms ease, color 150ms ease, padding-left 150ms ease;
+}
+
+#mobile-nav a:not(.nav-cta):hover,
+#mobile-nav a:not(.nav-cta):focus-visible {
+  padding-left: 20px;
+}
+
+#mobile-nav a:not(.nav-cta):hover,
+#mobile-nav a:not(.nav-cta):focus-visible {
+  background: var(--verid-indigo-soft);
+  color: var(--verid-indigo);
+}
+
+#mobile-nav a[aria-current="page"]:not(.nav-cta) {
+  color: var(--verid-indigo);
+  font-weight: 600;
+}
+
+#mobile-nav .nav-cta {
+  display: flex;
+  width: 100%;
+  margin-top: 10px;
+  margin-left: 0;
+}
+
+@keyframes mobile-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav.open #mobile-nav {
+    animation: none;
+  }
+}
+
+.site-nav--on-dark {
+  background: rgba(247, 245, 239, 0.94);
+  color: var(--verid-ink-deep);
+  border-color: rgba(247, 245, 239, 0.32);
+}
+
+.site-nav--on-dark .logo,
+.site-nav--on-dark .nav-links a,
+.site-nav--on-dark .nav-links .nav-link,
+.site-nav--on-dark .nav-cta,
+.site-nav--on-dark .nav-toggle {
+  color: var(--verid-ink-deep);
+}
+
+.site-nav--on-dark .nav-links a[aria-current="page"],
+.site-nav--on-dark .nav-links .nav-link[aria-current="page"] {
+  color: var(--verid-indigo);
+  font-weight: 600;
+}
+
+.site-nav--on-dark .nav-links a:hover,
+.site-nav--on-dark .nav-links .nav-link:hover {
+  color: var(--verid-indigo);
+}
+
+.site-nav--on-dark .nav-cta {
+  background: var(--verid-indigo);
+  border: 0;
+  color: var(--verid-paper);
+  box-shadow: var(--shadow-sm);
+}
+
+.site-nav--on-dark .nav-toggle:hover,
+.site-nav--on-dark .nav-toggle:focus-visible {
+  background: rgba(247, 245, 239, 0.08);
+}
+
+/*
+  Home opening: at the top of the page the nav is absorbed into the hero's
+  indigo field (NAV-01 / COLOR-08 camouflage). It carries no surface of its
+  own until .scrolled is applied. nav.js swaps --nav-tone / --nav-ink.
+*/
+/*
+  NAV-01 / COLOR-08: at the top of the page the nav shares the hero's indigo
+  field so it reads as part of the opening artwork rather than a detached bar.
+  Painting the same gradient on the nav (instead of relying on a transparent
+  surface over the hero) keeps the seam invisible at every viewport, including
+  mobile where the hero field is clipped by its own overflow.
+*/
+.home-page .site-nav {
+  background: linear-gradient(135deg, var(--verid-indigo), var(--verid-indigo-dark));
+  border-bottom-color: transparent;
+  color: var(--verid-paper);
+}
+
+.home-page .site-nav .logo,
+.home-page .site-nav .nav-links a,
+.home-page .site-nav .nav-link,
+.home-page .site-nav .icon {
+  color: var(--verid-paper);
+}
+
+.home-page .site-nav .nav-links a[aria-current="page"],
+.home-page .site-nav .nav-link[aria-current="page"] {
+  color: var(--verid-mint);
+}
+
+.home-page .site-nav.scrolled {
+  background: var(--nav-tone);
+  border-bottom-color: var(--nav-edge);
+  color: var(--nav-ink);
+}
+
+.home-page .site-nav.scrolled .logo,
+.home-page .site-nav.scrolled .nav-links a,
+.home-page .site-nav.scrolled .nav-link,
+.home-page .site-nav.scrolled .icon,
+.home-page .site-nav.scrolled .nav-toggle {
+  color: var(--nav-ink);
+}
+
+/*
+  Home page: hover and section-current links use their OWN per-link accent
+  (--link-accent), matching the base rules. Scoped here only to outrank the
+  home page's base colour declarations.
+*/
+.home-page .site-nav .nav-links a:hover,
+.home-page .site-nav .nav-links a:focus-visible,
+.home-page .site-nav .nav-link:hover,
+.home-page .site-nav .nav-link:focus-visible,
+.home-page .site-nav .nav-link.is-open,
+.home-page .site-nav .nav-link.is-current {
+  color: var(--link-accent);
+}
+
+.home-page .site-nav.scrolled .nav-links a:hover,
+.home-page .site-nav.scrolled .nav-links a:focus-visible,
+.home-page .site-nav.scrolled .nav-link:hover,
+.home-page .site-nav.scrolled .nav-link:focus-visible,
+.home-page .site-nav.scrolled .nav-link.is-open,
+.home-page .site-nav.scrolled .nav-link.is-current {
+  color: var(--link-accent);
+}
+
+.home-page .site-nav .logo,
+.home-page .site-nav .nav-links a,
+.home-page .site-nav .nav-link {
+  color: var(--verid-ink);
+}
+
+.home-page .site-nav .nav-links a[aria-current="page"],
+.home-page .site-nav .nav-link[aria-current="page"] {
+  color: var(--verid-indigo);
+}
+
+/* CTA keeps its own rose accent on the home hero (white-on-indigo would lose
+   its "action" reading against the busy field). */
+.home-page .site-nav .nav-cta {
+  background: var(--cta-accent, #F05A7E);
+  color: var(--verid-paper);
+  box-shadow: var(--shadow-sm);
+}
+
+.home-page .site-nav .nav-cta:hover,
+.home-page .site-nav .nav-cta:focus-visible {
+  background: #E11D6E;
+}
+
+.home-page .site-nav.scrolled .nav-cta {
+  background: var(--cta-accent, #F05A7E);
+  color: var(--verid-paper);
+}
+
+.home-page .site-nav.scrolled .nav-cta:hover,
+.home-page .site-nav.scrolled .nav-cta:focus-visible {
+  background: #E11D6E;
+}
+
+@media (max-width: 880px) {
+  .site-nav nav {
+    padding: 14px 20px;
+    gap: 12px;
+  }
+
+  .nav-links,
+  .nav-cta {
+    display: none;
+  }
+
+  .site-nav .nav-toggle {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 600px) {
+  /*
+    Full-bleed mobile bar: the nav spans the whole viewport so its surface —
+    and the menu panel it contains — reach the left and right edges exactly.
+  */
+  .site-nav {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .site-nav nav {
+    width: 100%;
+    padding: 12px 18px;
+  }
+
+  /* NAV-09 / RESP-06: the panel is full-bleed and touches both viewport edges. */
+  #mobile-nav {
+    left: 0;
+    right: 0;
+    border-radius: 0;
+  }
+}
+/* ------------------------------------------------------------------
+   Desktop navigation dialog
+   Each nav link opens a small panel of real section destinations.
+   The layer is positioned relative to the nav row so the panel can be
+   anchored under its own link by JavaScript.
+------------------------------------------------------------------ */
+.nav-dialog-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.nav-dialog {
+  position: absolute;
+  z-index: calc(var(--z-nav) + 1);
+  width: min(320px, calc(100vw - 48px));
+  padding: 14px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(77, 95, 234, 0.16);
+  box-shadow: var(--shadow-lg), 0 30px 60px -40px rgba(23, 32, 51, 0.5);
+  pointer-events: auto;
+  transform-origin: top center;
+  animation: dialog-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.nav-dialog__label {
+  margin: 2px 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--verid-muted);
+}
+
+.nav-dialog__item {
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--verid-ink);
+  transition: background-color 150ms ease, transform 150ms ease, color 150ms ease;
+}
+
+.nav-dialog__item + .nav-dialog__item {
+  margin-top: 2px;
+}
+
+.nav-dialog__item:hover,
+.nav-dialog__item:focus-visible {
+  background: var(--verid-indigo-soft);
+  transform: translateX(2px);
+  color: var(--verid-ink);
+}
+
+.nav-dialog__title {
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.nav-dialog__meta {
+  font-size: 12.5px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--verid-muted);
+}
+
+/* Animated entry for the panel */
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/*
+  Kept for reference only — the previous rounded "pill" nav surface is
+  superseded by the camouflage surface above (AMENDMENT 04).
+*/
+.site-nav--on-dark .nav-dialog {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(77, 95, 234, 0.24);
+}
+
+.site-nav--on-dark .nav-dialog__item {
+  color: var(--verid-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-dialog {
+    animation: none;
+  }
+
+  .nav-dialog__item,
+  .icon--chevron {
+    transition: none;
+  }
+}
+
+/* The dialog is a desktop-only affordance */
+@media (max-width: 880px) {
+  .nav-dialog-layer {
+    display: none;
+  }
+}

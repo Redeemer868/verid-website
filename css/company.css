@@ -1,0 +1,267 @@
+/* company.css — page-specific company styles */
+
+/*
+  H9–H10 — COMPANY / MISSION / STORY / VALUES.
+  Schemes: IMAGE-07 people-led circular crop, CURVE-01 blush field,
+  TYPE-11 quote object, IMAGE-03 oversized crop, LAYOUT-05 diagonal values.
+*/
+.company-intro,
+.mission,
+.team-story,
+.values {
+  position: relative;
+  padding: clamp(80px, 11vw, 140px) 0 clamp(50px, 7vw, 90px);
+}
+
+.company-intro,
+.mission {
+  overflow: hidden;
+}
+
+.company-grid,
+.mission-grid,
+.story-wrap {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.company-field {
+  top: -10%;
+  right: -16%;
+  width: 58%;
+  height: 120%;
+  background: radial-gradient(80% 90% at 40% 40%, rgba(242, 184, 172, 0.3) 0%, rgba(242, 184, 172, 0) 70%);
+  border-radius: var(--curve-monolith);
+}
+
+.company-copy h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  max-width: 16ch;
+}
+
+.company-copy p:last-child {
+  margin: 0;
+  max-width: 52ch;
+  color: var(--verid-muted);
+  font-size: 1.08rem;
+}
+
+.company-visual,
+.story-photo {
+  position: relative;
+}
+
+.company-visual img,
+.story-photo img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/*
+  IMAGE-07: circular imagery as a compositional device for the people-led
+  company shot, with a halo behind it (IMAGE-13).
+*/
+.company-visual img {
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-position: center 30%;
+  box-shadow: 0 40px 90px -50px rgba(23, 32, 51, 0.5);
+}
+
+.company-visual::before {
+  content: "";
+  position: absolute;
+  inset: -7%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(60% 60% at 50% 50%, rgba(70, 201, 177, 0.2) 0%, rgba(70, 201, 177, 0) 70%);
+}
+
+/* Mint/indigo field behind the mission (CURVE-05 cradle + COLOR-11). */
+.mission-field {
+  top: -10%;
+  left: -12%;
+  width: 68%;
+  height: 120%;
+  background: linear-gradient(140deg, rgba(70, 201, 177, 0.14), rgba(77, 95, 234, 0.06));
+  border-radius: var(--curve-cradle);
+}
+
+.mission-card {
+  padding: 0;
+}
+
+.mission-card h2 {
+  margin: 0.5rem 0 1rem;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  max-width: 18ch;
+}
+
+.mission-card p,
+.story-copy p,
+.value-card p {
+  margin: 0;
+  color: var(--verid-muted);
+}
+
+/*
+  TYPE-11: the quote becomes a graphic typographic object — oversized, with a
+  large opening mark and a metadata attribution — not a plain card.
+*/
+.mission-quote {
+  position: relative;
+  margin: 0;
+  padding: clamp(2rem, 4vw, 3rem) clamp(1.75rem, 3vw, 2.5rem);
+  background: var(--verid-ink);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 40px 90px -55px rgba(23, 32, 51, 0.7);
+}
+
+.mission-quote::before {
+  content: "“";
+  position: absolute;
+  top: -0.35em;
+  left: 0.25rem;
+  font-size: 9rem;
+  line-height: 1;
+  font-weight: 800;
+  color: rgba(70, 201, 177, 0.32);
+}
+
+.mission-quote blockquote {
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.mission-quote p {
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  line-height: 1.22;
+  letter-spacing: -0.03em;
+  color: var(--verid-paper);
+}
+
+.mission-quote figcaption {
+  margin-top: 1.5rem;
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--verid-mint);
+}
+
+/* IMAGE-03: an oversized editorial crop for the origin story. */
+.team-story .story-photo img {
+  aspect-ratio: 4 / 4.4;
+  border-radius: var(--radius-field) var(--radius-lg) var(--radius-field) var(--radius-lg);
+  object-position: center;
+}
+
+/* Story flips the company-intro arrangement so consecutive screens differ
+   (AMENDMENT 02: no two consecutive compositions share a skeleton). */
+.story-wrap {
+  grid-template-columns: 1.05fr 0.95fr;
+}
+
+.story-wrap .story-copy {
+  order: -1;
+}
+
+.story-copy h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  max-width: 20ch;
+}
+
+.values {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: clamp(80px, 11vw, 140px);
+}
+
+.values h2 {
+  margin-top: 0.5rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+.values-field {
+  top: 0;
+  right: -14%;
+  width: 46%;
+  height: 100%;
+  background: radial-gradient(80% 80% at 60% 40%, rgba(221, 245, 238, 0.9) 0%, rgba(221, 245, 238, 0) 68%);
+  border-radius: var(--curve-monolith);
+}
+
+/*
+  LAYOUT-05 diagonal journey (AMENDMENT 07): values step down diagonally with
+  oversized numerals rather than repeating three identical cards.
+*/
+.values-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.value-card {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.value-card:nth-child(2) {
+  transform: translateY(34px);
+}
+
+.value-card:nth-child(3) {
+  transform: translateY(68px);
+}
+
+.value-num {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--verid-indigo);
+}
+
+.value-card h3 {
+  margin: 0 0 0.7rem;
+  font-size: 1.45rem;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 880px) {
+  .company-grid,
+  .mission-grid,
+  .story-wrap,
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,1229 @@
+/* home.css — page-specific home styles */
+
+/*
+  H1 — HOME OPENING ARTWORK (nav + hero as one composition).
+  Schemes: CURVE-01 monolithic organic field + CURVE-05 concave cradle +
+  COLOR-02 two-colour split + IMAGE-01 object crossing fields + DEPTH-01.
+  The indigo field sweeps in from the left and meets an ivory surface on the
+  right; the portrait subject crosses that seam.
+*/
+.hero {
+  position: relative;
+  padding: clamp(120px, 16vw, 190px) 0 clamp(90px, 12vw, 150px);
+  overflow: hidden;
+  background: var(--verid-ivory);
+}
+
+/* The ivory surface hosting the subject (secondary colour field) */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 46%;
+  z-index: var(--z-field);
+  background: radial-gradient(120% 120% at 80% 30%, var(--verid-mint-soft) 0%, rgba(247, 245, 239, 0) 62%),
+    var(--verid-ivory);
+  pointer-events: none;
+}
+
+/* Bottom swell carrying the eye into the next composition (TRANS-01) */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 120px;
+  z-index: var(--z-field);
+  background: var(--verid-ivory);
+  border-radius: var(--curve-swell);
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: var(--z-content);
+  display: grid;
+  grid-template-columns: 1.02fr 0.98fr;
+  align-items: center;
+  gap: clamp(2rem, 4vw, 4rem);
+}
+
+/*
+  Decorative stroke system orbiting the focal object (DECOR-01/02).
+  Placed in the ivory field on the far right so it never crosses the headline.
+*/
+.hero-deco-line {
+  width: 380px;
+  height: 380px;
+  right: 4%;
+  top: 6%;
+  opacity: 0.45;
+}
+
+.hero-deco-dot {
+  right: 3%;
+  top: 14%;
+}
+
+.hero-copy {
+  max-width: 620px;
+  z-index: var(--z-content);
+  position: relative;
+}
+
+/*
+  Concave cradle (CURVE-05): a protected indigo pocket behind the headline.
+  The box is sized to contain the full two-line display block with breathing
+  room so nothing is clipped.
+*/
+.hero-copy::before {
+  content: "";
+  position: absolute;
+  inset: -56px -60px -52px -68px;
+  z-index: -1;
+  background: linear-gradient(135deg, var(--verid-indigo), var(--verid-indigo-dark));
+  border-radius: var(--curve-cradle);
+  box-shadow: 0 40px 90px -60px rgba(23, 32, 51, 0.55);
+}
+
+.hero-copy .eyebrow,
+.hero-copy #hero-heading,
+.hero-copy .hero-text,
+.hero-copy .hero-actions {
+  opacity: 0;
+  animation: hero-rise 700ms ease-out forwards;
+}
+
+.hero-copy #hero-heading {
+  animation-delay: 120ms;
+}
+
+.hero-copy .hero-text {
+  animation-delay: 220ms;
+}
+
+.hero-copy .hero-actions {
+  animation-delay: 320ms;
+}
+
+.eyebrow {
+  margin-bottom: 1rem;
+}
+
+/*
+  TYPE-01 oversized editorial headline inside the cradle.
+  A dedicated clamp (smaller than the global --fs-display) keeps the two-line
+  block inside the concave cradle at every breakpoint, so the descenders and
+  the final "human." line are never clipped.
+*/
+#hero-heading,
+.hero-heading {
+  font-size: clamp(2.6rem, 6.6vw, 5.4rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+  padding-bottom: 0.08em;
+  color: var(--verid-paper);
+  overflow: visible;
+  text-wrap: balance;
+  max-width: 12ch;
+}
+
+/*
+  TYPE-03 mixed-weight phrase: the human half of the promise carries the
+  brand's mint verification colour (COLOR-04 accent recurrence).
+  The word writes on letter-by-letter (h → n) and ends with a mint dot.
+*/
+/*
+  The word must inherit the headline's full display size, weight, spacing and
+  line-height — otherwise the inline-block collapses to the base 16px and the
+  word appears crushed (the bug this fixes).
+*/
+.write-on {
+  color: var(--verid-mint);
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.write-on > span {
+  display: inline-block;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  opacity: 0;
+  transform: translateY(0.18em);
+  filter: blur(6px);
+  animation: write-on-letter 420ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.write-on > span:nth-child(1) { animation-delay: 0.85s; }
+.write-on > span:nth-child(2) { animation-delay: 0.99s; }
+.write-on > span:nth-child(3) { animation-delay: 1.13s; }
+.write-on > span:nth-child(4) { animation-delay: 1.27s; }
+.write-on > span:nth-child(5) { animation-delay: 1.41s; }
+
+.write-on__dot {
+  display: inline-block;
+  width: 0.16em;
+  height: 0.16em;
+  margin-left: 0.06em;
+  border-radius: 50%;
+  background: var(--verid-mint);
+  box-shadow: 0 0 0 0 rgba(70, 201, 177, 0.5);
+  opacity: 0;
+  animation: write-on-dot 700ms ease-out 1.58s forwards, dot-pulse 2.4s ease-in-out 2.3s infinite;
+}
+
+@keyframes write-on-letter {
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes write-on-dot {
+  0% { opacity: 0; transform: scale(0); }
+  60% { opacity: 1; transform: scale(1.25); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(70, 201, 177, 0.5); }
+  50% { box-shadow: 0 0 0 8px rgba(70, 201, 177, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .write-on > span,
+  .write-on__dot {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.hero-text {
+  margin-top: 1.5rem;
+  font-size: clamp(1.02rem, 1.2vw, 1.125rem);
+  line-height: 1.6;
+  color: rgba(247, 245, 239, 0.88);
+  max-width: 46ch;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.9rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease, background-color 150ms ease;
+}
+
+/*
+  CTA VISIBILITY CONTRACT — over the indigo hero the primary action uses a
+  white surface (contrast island, CTA-02/04) so its edge survives the field;
+  the secondary keeps an explicit ivory edge (CTA-05).
+*/
+.btn-primary {
+  background: var(--verid-paper);
+  color: var(--verid-indigo);
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+}
+
+.btn-primary:hover {
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--verid-paper);
+  border: 1px solid rgba(247, 245, 239, 0.55);
+}
+
+.btn-secondary:hover {
+  background: rgba(247, 245, 239, 0.16);
+  border-color: var(--verid-paper);
+}
+
+/* Over light/ivory surfaces the standard button treatment resumes. */
+.btn-primary.on-light {
+  background: var(--verid-indigo);
+  color: var(--verid-paper);
+}
+
+.btn-secondary.on-light {
+  background: transparent;
+  color: var(--verid-ink);
+  border-color: var(--verid-border);
+}
+
+.btn-secondary.on-light:hover {
+  background: var(--verid-indigo-soft);
+  border-color: var(--verid-indigo);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/*
+  IMAGE-01: the subject crosses the indigo/ivory seam. It is pulled left
+  into the indigo field so the photograph physically bridges both surfaces.
+*/
+.hero-visual {
+  position: relative;
+  z-index: var(--z-subject);
+  margin: 0 0 0 clamp(-2rem, -4vw, 0rem);
+  opacity: 0;
+  animation: portrait-rise 900ms ease-out 180ms forwards;
+}
+
+.verification-ring {
+  position: absolute;
+  right: -6%;
+  top: 8%;
+  transform: translate(0, 0);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.photo-pair {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+/*
+  IMAGE-08 organic mask + IMAGE-13 soft halo (DEPTH-06): the portrait is
+  framed by the brand's curve language rather than a plain rounded card.
+*/
+.photo-card {
+  position: relative;
+  width: min(100%, 460px);
+  margin: 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 46% 54% 42% 58% / 40% 44% 56% 60%;
+  box-shadow: var(--shadow-lg), 0 40px 80px -50px rgba(77, 95, 234, 0.75);
+}
+
+.photo-card::before {
+  content: "";
+  position: absolute;
+  inset: -26px;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(60% 60% at 50% 45%, rgba(70, 201, 177, 0.28) 0%, rgba(70, 201, 177, 0) 70%);
+}
+
+.photo-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 22%;
+  display: block;
+  border-radius: var(--radius-lg);
+}
+
+/* ==================================================================
+   ANIMATED FACE SCAN (hero)
+   A colourful, realistic verification scan that reads across the subject's
+   face: a rotating conic ring, a travelling sweep line, corner brackets and
+   a pulsing verified dot. Motion is decorative and disabled under
+   prefers-reduced-motion.
+   ================================================================== */
+.face-scan {
+  position: absolute;
+  inset: 10px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Faint technical grid over the portrait */
+.face-scan__grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(70, 201, 177, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(70, 201, 177, 0.16) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.5;
+  mask-image: radial-gradient(60% 55% at 50% 38%, #000 30%, transparent 78%);
+  -webkit-mask-image: radial-gradient(60% 55% at 50% 38%, #000 30%, transparent 78%);
+}
+
+/* Colourful scan ring sweeping across the face (the "rotating" element) */
+.face-scan__sweep {
+  position: absolute;
+  left: 50%;
+  top: 38%;
+  width: min(74%, 340px);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg,
+    rgba(70, 201, 177, 0) 0deg,
+    rgba(70, 201, 177, 0.55) 60deg,
+    rgba(77, 95, 234, 0.6) 150deg,
+    rgba(242, 184, 172, 0.55) 240deg,
+    rgba(70, 201, 177, 0) 330deg);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+  animation: face-ring-spin 3.4s linear infinite;
+}
+
+/* The scan line that reads top-to-bottom across the face */
+.face-scan__sweep::after {
+  content: "";
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--verid-mint), transparent);
+  box-shadow: 0 0 14px 3px rgba(70, 201, 177, 0.65);
+  animation: face-scan-line 3.4s ease-in-out infinite;
+}
+
+/* Corner brackets focus the scan like a real face-capture UI */
+.face-scan__bracket {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--verid-mint);
+}
+
+.face-scan__bracket--tl { top: 16%; left: 12%; border-right: 0; border-bottom: 0; border-top-left-radius: 8px; }
+.face-scan__bracket--tr { top: 16%; right: 12%; border-left: 0; border-bottom: 0; border-top-right-radius: 8px; }
+.face-scan__bracket--bl { bottom: 14%; left: 12%; border-right: 0; border-top: 0; border-bottom-left-radius: 8px; }
+.face-scan__bracket--br { bottom: 14%; right: 12%; border-left: 0; border-top: 0; border-bottom-right-radius: 8px; }
+
+/* Pulsing verified dot on the scan */
+.face-scan__dot {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: var(--verid-mint);
+  box-shadow: 0 0 0 6px rgba(70, 201, 177, 0.22), 0 0 18px 4px rgba(70, 201, 177, 0.7);
+  animation: face-scan-pulse 1.7s ease-in-out infinite;
+}
+
+@keyframes face-ring-spin {
+  to { rotate: 360deg; }
+}
+
+@keyframes face-scan-line {
+  0%   { transform: translateY(-52px); opacity: 0; }
+  15%  { opacity: 1; }
+  50%  { transform: translateY(var(--scan-travel, 58px)); opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateY(72px); opacity: 0; }
+}
+
+@keyframes face-scan-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .face-scan__sweep,
+  .face-scan__sweep::after,
+  .face-scan__dot {
+    animation: none;
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes portrait-rise {
+  from {
+    opacity: 0;
+    transform: translateX(36px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy .eyebrow,
+  .hero-copy #hero-heading,
+  .hero-copy .hero-text,
+  .hero-copy .hero-actions,
+  .hero-visual {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero .hero-inner {
+    border-radius: 0 0 40% 60% / 0 0 14% 20%;
+  }
+
+  .hero-copy #hero-heading {
+    overflow-wrap: anywhere;
+  }
+
+  .photo-card {
+    padding: 8px;
+  }
+
+  .photo-card figcaption {
+    left: 16px;
+    bottom: 16px;
+    font-size: 0.72rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 auto;
+  }
+}
+
+.stats-strip {
+  position: relative;
+  z-index: var(--z-content);
+  padding: 2.25rem 0 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(217, 221, 231, 0.9);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.75rem 0.5rem;
+}
+
+.stat-value {
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--verid-ink);
+}
+
+.stat-label {
+  color: var(--verid-muted);
+  font-size: 0.92rem;
+}
+
+.problem-flow {
+  padding: 4rem 0 1rem;
+}
+
+.problem-flow h2 {
+  max-width: 760px;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: var(--fs-section);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.problem-card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--verid-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.problem-number {
+  display: inline-block;
+  margin-bottom: 0.9rem;
+  color: var(--verid-indigo);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.problem-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+}
+
+.problem-card p {
+  margin: 0;
+  color: var(--verid-muted);
+}
+
+/*
+  H5 — LIVE VERIFICATION DEMO. The product panel is an inset island
+  (LAYOUT-07) seated in a soft indigo/mint field (CURVE-01 tonal shift), with
+  the status indicators acting as the primary visual anchor (PRODUCT-03).
+*/
+.demo-section {
+  position: relative;
+  padding: clamp(90px, 12vw, 150px) 0 clamp(100px, 13vw, 160px);
+  background: var(--verid-ivory);
+  overflow: hidden;
+}
+
+.demo-field {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 96%;
+  height: 100%;
+  background: radial-gradient(90% 120% at 24% 20%, rgba(232, 235, 255, 0.9) 0%, rgba(232, 235, 255, 0) 62%),
+    radial-gradient(80% 110% at 82% 78%, rgba(221, 245, 238, 0.85) 0%, rgba(221, 245, 238, 0) 60%);
+  border-radius: var(--curve-monolith);
+}
+
+.demo-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.system-teaser {
+  padding: 1rem 0 5rem;
+}
+
+.system-teaser h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  max-width: 740px;
+  font-size: var(--fs-section);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.teaser-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.teaser-card {
+  display: flex;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--verid-border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.teaser-icon {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.teaser-content {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.teaser-kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--verid-muted);
+}
+
+.teaser-card h3 {
+  margin: 0;
+  font-size: 1.35rem;
+  letter-spacing: -0.025em;
+}
+
+.teaser-card p {
+  margin: 0;
+  color: var(--verid-muted);
+}
+
+.use-case-strip {
+  padding: 1rem 0 5rem;
+}
+
+.use-case-header {
+  margin-bottom: 1.5rem;
+}
+
+.use-case-header h2 {
+  max-width: 760px;
+  margin-top: 0.5rem;
+  font-size: var(--fs-section);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.use-case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.use-case-card {
+  background: var(--verid-paper);
+  border: 1px solid var(--verid-border);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.use-case-tag {
+  display: inline-block;
+  margin-bottom: 0.9rem;
+  color: var(--verid-indigo);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.use-case-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+}
+
+.use-case-card p {
+  margin: 0;
+  color: var(--verid-muted);
+}
+
+.cta-band {
+  padding: 0 0 5rem;
+}
+
+.cta-shell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, rgba(77, 95, 234, 0.12), rgba(70, 201, 177, 0.12));
+  border: 1px solid rgba(77, 95, 234, 0.14);
+}
+
+.cta-copy h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  max-width: 620px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.demo-copy h2 {
+  margin-top: 0.6rem;
+  margin-bottom: 1rem;
+  font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  max-width: 16ch;
+}
+
+.demo-copy p {
+  max-width: 44ch;
+  color: var(--verid-muted);
+}
+
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 1.7rem;
+  color: var(--verid-ink);
+  font-weight: 500;
+}
+
+.check-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.42rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--verid-mint);
+  box-shadow: 0 0 0 4px rgba(70, 201, 177, 0.12);
+}
+
+/*
+  Inset island on the field — unmistakable boundary (LAYOUT-07 / CTA-03).
+  The panel's accent (--demo-accent) is driven by its data-tone state, so the
+  whole surface shifts colour as the verification advances.
+*/
+.demo-panel {
+  --demo-accent: var(--verid-indigo);
+  --demo-accent-soft: rgba(77, 95, 234, 0.14);
+  position: relative;
+  background: var(--verid-paper);
+  border: 1px solid var(--demo-accent-soft);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  box-shadow: 0 40px 90px -55px rgba(23, 32, 51, 0.55);
+  transition: border-color 600ms ease, box-shadow 600ms ease;
+}
+
+.demo-panel[data-tone="scan"] {
+  --demo-accent: #4D5FEA;
+  --demo-accent-soft: rgba(77, 95, 234, 0.22);
+}
+
+.demo-panel[data-tone="check"] {
+  --demo-accent: #8B5CF6;
+  --demo-accent-soft: rgba(139, 92, 246, 0.26);
+}
+
+.demo-panel[data-tone="verified"] {
+  --demo-accent: var(--verid-mint);
+  --demo-accent-soft: rgba(70, 201, 177, 0.4);
+}
+
+/* Header, rail and step all inherit the current state accent. */
+.demo-header {
+  color: var(--demo-accent);
+}
+
+.demo-header .icon {
+  color: var(--demo-accent);
+}
+
+.flow-steps::before {
+  content: "";
+  position: absolute;
+  left: 1.55rem;
+  top: 1.4rem;
+  bottom: 1.4rem;
+  width: 2px;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--demo-accent-soft) 0 8px,
+    transparent 8px 16px
+  );
+  pointer-events: none;
+  transition: background 600ms ease;
+}
+
+.flow-step.active {
+  border-color: var(--demo-accent);
+  box-shadow: -3px 0 0 0 var(--demo-accent);
+}
+
+.signal-pill.is-active {
+  background: var(--demo-accent);
+}
+
+.demo-panel[data-tone="verified"] .demo-result__label {
+  color: var(--verid-mint);
+}
+
+/*
+  PRODUCT-04: a flowing connector rail explains state progression.
+  It is anchored to the step list itself (via the flow-steps element) so it
+  cannot dangle into the decision area beneath it.
+*/
+.demo-panel__rail {
+  display: none;
+}
+
+.flow-steps {
+  position: relative;
+}
+
+.flow-step {
+  position: relative;
+  z-index: 1;
+}
+
+/* The status header carries a small live indicator that pulses. */
+.demo-header .icon {
+  animation: demo-header-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes demo-header-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+.signal-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: var(--verid-mint);
+  box-shadow: 0 0 0 5px rgba(70, 201, 177, 0.12);
+}
+
+/*
+  LIVE / VERIFIED dot: a green indicator that softly blinks so the decision
+  output reads as an active, real-time signal rather than a static value.
+*/
+.signal-dot--live {
+  position: relative;
+  background: var(--verid-mint);
+}
+
+.signal-dot--live::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--verid-mint);
+  animation: dot-blink 1.8s ease-in-out infinite;
+}
+
+@keyframes dot-blink {
+  0%   { opacity: 0.9; transform: scale(1); }
+  50%  { opacity: 0;   transform: scale(2.4); }
+  100% { opacity: 0;   transform: scale(2.4); }
+}
+
+/* Solid pulse ring that breathes (used on the resolved decision state) */
+.signal-dot.is-verified {
+  animation: dot-breathe 1.8s ease-in-out infinite;
+}
+
+@keyframes dot-breathe {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(70, 201, 177, 0.35); }
+  50%      { box-shadow: 0 0 0 8px rgba(70, 201, 177, 0); }
+}
+
+.status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.25rem 0 1.5rem;
+}
+
+.signal-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--verid-indigo-soft);
+  color: var(--verid-ink);
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  transition: background-color 420ms ease, color 420ms ease, box-shadow 420ms ease, transform 420ms ease;
+}
+
+/* Lit (completed) pills turn mint-green with a verified tick. */
+.signal-pill.success {
+  background: var(--verid-mint-soft);
+  color: var(--verid-ink);
+}
+
+/* The most recently activated pill is emphasised while it settles.
+   Its colour follows the panel's current state accent (--demo-accent). */
+.signal-pill.is-active {
+  color: var(--verid-ink);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px -8px rgba(23, 32, 51, 0.35);
+}
+
+.flow-steps {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 0.9rem;
+  border-radius: var(--radius-md);
+  background: var(--verid-ivory);
+  border: 1px solid transparent;
+  color: var(--verid-muted);
+}
+
+/*
+  Flow states: done (completed), active (current), and upcoming. Each has its
+  own surface so the pipeline visibly changes colour as it auto-advances.
+*/
+.flow-step {
+  transition: background-color 420ms ease, border-color 420ms ease, color 420ms ease, transform 420ms ease;
+}
+
+.flow-step.done {
+  border-color: rgba(70, 201, 177, 0.28);
+  background: rgba(221, 245, 238, 0.55);
+  color: var(--verid-ink);
+}
+
+.flow-step.active {
+  background: rgba(232, 235, 255, 0.85);
+  color: var(--verid-ink);
+  transform: translateX(4px);
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--verid-indigo);
+  color: var(--verid-paper);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.demo-result {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--verid-border);
+  display: grid;
+  gap: 0.2rem;
+}
+
+.result-label {
+  margin: 0;
+  color: var(--verid-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.demo-result strong {
+  font-size: clamp(1.6rem, 2.3vw, 2.2rem);
+  letter-spacing: -0.04em;
+}
+
+.demo-result span {
+  color: var(--verid-muted);
+}
+
+@media (max-width: 880px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    gap: clamp(2rem, 6vw, 2.75rem);
+  }
+
+  .hero-copy {
+    max-width: none;
+  }
+
+  /* On tablet and mobile the portrait follows the copy rather than
+     leading with an oversized image. */
+  .hero-visual {
+    order: 1;
+  }
+
+  .photo-card {
+    width: min(100%, 420px);
+  }
+
+  .photo-card img {
+    aspect-ratio: 5 / 4;
+    object-position: center 18%;
+  }
+
+  .verification-ring {
+    right: -2%;
+    top: 2%;
+    width: 136px;
+    height: 136px;
+  }
+
+  .stats-grid,
+  .demo-grid,
+  .problem-grid,
+  .teaser-grid,
+  .use-case-grid,
+  .cta-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-shell {
+    display: grid;
+    align-items: start;
+  }
+
+  .cta-actions {
+    justify-content: flex-start;
+  }
+}
+/* ==================================================================
+   H1 RESPONSIVE RECOMPOSITION (AMENDMENT 11)
+   Mobile is its own composition: vertical editorial order, a simpler
+   but recognisable curve, and the CTA relocated for touch (RESP-01/02/04).
+   ================================================================== */
+
+@media (max-width: 1080px) {
+  .hero-copy::before {
+    inset: -40px -40px -34px -48px;
+  }
+}
+
+@media (max-width: 880px) {
+  /* Vertical editorial: headline first, subject below (RESP-01). */
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: clamp(3rem, 8vw, 5rem);
+  }
+
+  .hero-copy {
+    max-width: 100%;
+  }
+
+  .hero-visual {
+    margin-left: 0;
+    justify-self: center;
+  }
+
+  /* The indigo field becomes a top mass instead of a side sweep. */
+  .curve-field--half-left {
+    top: -20%;
+    left: -30%;
+    width: 130%;
+    height: 78%;
+    bottom: auto;
+    border-radius: 0 0 58% 42% / 0 0 30% 26%;
+  }
+
+  .hero::before {
+    inset: 42% 0 0 0;
+    background: radial-gradient(120% 90% at 70% 10%, var(--verid-mint-soft) 0%, rgba(247, 245, 239, 0) 65%),
+      var(--verid-ivory);
+  }
+
+  .hero-deco-line {
+    width: 280px;
+    height: 280px;
+    right: -6%;
+    top: 46%;
+    opacity: 0.4;
+  }
+
+  .hero-deco-dot {
+    right: 8%;
+    top: 52%;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding-top: clamp(88px, 26vw, 130px);
+  }
+
+  /*
+    NAV-01 on mobile: the indigo field rises behind the sticky nav so the nav
+    is absorbed into the opening artwork instead of sitting as a detached bar.
+    The field is pulled well above the viewport top (and widened) so no ivory
+    sliver can show in the top corners behind the nav.
+  */
+  .curve-field--half-left {
+    top: -120px;
+    left: -30%;
+    width: 160%;
+    height: 88%;
+    bottom: auto;
+    border-radius: 0 0 58% 42% / 0 0 26% 22%;
+  }
+
+  /*
+    RESP-02: a simplified but recognisable curve. The cradle bleeds only
+    vertically on mobile so its horizontal edge never pushes content (and the
+    CTAs) past the viewport (RESP-04).
+  */
+  .hero-copy::before {
+    inset: -30px -14px -28px -18px;
+    border-radius: 0 0 38% 62% / 0 0 22% 26%;
+  }
+
+  /*
+    RESP-02 / RESP-04: on mobile the headline is recomposed — a smaller
+    display size and natural wrapping inside the column. The desktop <br> is
+    neutralised so the forced line can never overrun the cradle edge and clip
+    the mint accent word.
+  */
+  #hero-heading,
+  .hero-heading {
+    font-size: clamp(2.35rem, 10.5vw, 3rem);
+    max-width: 100%;
+    padding-right: 0;
+  }
+
+  #hero-heading br {
+    display: none;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 100%;
+  }
+}

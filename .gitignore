@@ -1,0 +1,47 @@
+# ------------------------------------------------------------------
+# AI / assistant working files — never tracked or pushed
+# All such files live in .ai/ (planning docs, prompt notes, manifests)
+# ------------------------------------------------------------------
+.ai/
+CLAUDE.md
+claude.md
+.cursor/
+.cursorrules
+.windsurfrules
+.aider*
+.codeium/
+.codex/
+.codegpt/
+.github/copilot-instructions.md
+
+# Planning / prompt markdown dropped into the project
+PROMPT*.md
+prompt*.md
+*_PLAN.md
+*_PROMPT.md
+DESIGN_COMPOSITION_MAP.md
+ASSET_MANIFEST.md
+
+# QA / scratch artifacts produced while iterating
+_*.mjs
+_*.ps1
+_*.png
+_*.json
+
+# ------------------------------------------------------------------
+# OS / editor cruft
+# ------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# ------------------------------------------------------------------
+# Node / tooling (if any is added later)
+# ------------------------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.env
+.env.local

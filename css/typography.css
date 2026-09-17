@@ -1,0 +1,147 @@
+/*
+  typography.css — full type system
+  Instrument Sans (official @fontsource build, served via jsDelivr) is listed
+  FIRST so the brand typeface renders immediately. A local /fonts/*.woff2 file
+  is listed SECOND as an override: drop a real self-hosted file in /fonts and
+  the browser will use it for offline/self-contained deployments.
+  font-display: swap keeps text visible while the font loads.
+*/
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/npm/@fontsource/instrument-sans@5/files/instrument-sans-latin-400-normal.woff2') format('woff2'),
+       url('../fonts/instrument-sans-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/npm/@fontsource/instrument-sans@5/files/instrument-sans-latin-500-normal.woff2') format('woff2'),
+       url('../fonts/instrument-sans-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/npm/@fontsource/instrument-sans@5/files/instrument-sans-latin-600-normal.woff2') format('woff2'),
+       url('../fonts/instrument-sans-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/npm/@fontsource/instrument-sans@5/files/instrument-sans-latin-700-normal.woff2') format('woff2'),
+       url('../fonts/instrument-sans-700.woff2') format('woff2');
+}
+
+/*
+  Instrument Sans tops out at 700 upstream, but the design uses font-weight:800
+  for display headings. This face maps an 800 request onto the heaviest real
+  weight (700) so headlines never fall back to a system font.
+*/
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/npm/@fontsource/instrument-sans@5/files/instrument-sans-latin-700-normal.woff2') format('woff2'),
+       url('../fonts/instrument-sans-800.woff2') format('woff2');
+}
+
+/*
+  Weight discipline reference:
+  400 = body
+  500 = nav
+  600 = labels/buttons
+  650-700 = section titles
+  700-750 = major headlines
+  800 = reserved for rare dramatic moments only
+*/
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--verid-indigo);
+}
+
+/* Inline icons inside a label sit on the text baseline, never on their own line. */
+.eyebrow .icon,
+.eyebrow .icon--inline {
+  flex: 0 0 auto;
+  width: 1em;
+  height: 1em;
+  margin: 0;
+}
+
+.eyebrow.on-dark {
+  color: var(--verid-mint);
+}
+
+.eyebrow.on-blush {
+  color: #9d5d53;
+}
+
+h1,
+.hero-heading {
+  font-size: var(--fs-hero);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+h2,
+.section-heading {
+  font-size: var(--fs-section);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.06;
+}
+
+h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p,
+li,
+span,
+div,
+a,
+button {
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+body,
+body * {
+  max-width: none;
+}
+
+p {
+  max-width: 62ch;
+}
+
+.muted {
+  color: var(--verid-muted);
+}
+
+html {
+  font-size: 16px;
+}
+

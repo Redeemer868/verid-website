@@ -1,0 +1,308 @@
+/* developers.css — page-specific developers styles */
+
+.developers-main {
+  background: var(--verid-ink-deep);
+  color: var(--verid-ivory);
+}
+
+/*
+  H8 — DEVELOPERS as a terminal landscape (DEV-01 / DEV-03).
+  The console is a designed surface: it carries a mint status glow, editorial
+  framing, and a technical typographic voice (TYPE-12), not a plain code box.
+*/
+.developers-hero {
+  position: relative;
+  padding: clamp(90px, 12vw, 140px) 0 clamp(50px, 7vw, 80px);
+  overflow: hidden;
+}
+
+/* Soft verification glow behind the console (DECOR-10 / DEPTH-02). */
+.developers-hero::before {
+  content: "";
+  position: absolute;
+  right: -8%;
+  top: -10%;
+  width: 60%;
+  height: 110%;
+  background: radial-gradient(55% 55% at 60% 45%, rgba(70, 201, 177, 0.22) 0%, rgba(70, 201, 177, 0) 68%),
+    radial-gradient(60% 60% at 30% 70%, rgba(77, 95, 234, 0.28) 0%, rgba(77, 95, 234, 0) 70%);
+  pointer-events: none;
+}
+
+.developers-grid {
+  position: relative;
+  z-index: var(--z-content);
+}
+
+.developer-photo-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+.developer-photo-pair figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(247, 245, 239, 0.12);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.developer-photo-pair img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.developer-photo-pair figcaption {
+  padding: 0.85rem 1rem;
+  color: rgba(247, 245, 239, 0.8);
+  font-size: 0.85rem;
+}
+
+.developers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+}
+
+.developers-copy h1 {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+  color: var(--verid-ivory);
+}
+
+.developers-copy p:last-of-type {
+  margin: 0;
+  max-width: 56ch;
+  color: rgba(247, 245, 239, 0.8);
+}
+
+.dev-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.btn-secondary-dark {
+  border-color: rgba(247, 245, 239, 0.45);
+  color: var(--verid-ivory);
+}
+
+.btn-secondary-dark:hover {
+  background: rgba(77, 95, 234, 0.14);
+  border-color: rgba(247, 245, 239, 0.8);
+}
+
+/* DEV-03: the code fragment is a strong typographic object, framed editorially. */
+.console-panel {
+  position: relative;
+  background: linear-gradient(160deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.98));
+  border: 1px solid rgba(70, 201, 177, 0.22);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 50px 100px -60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  overflow: hidden;
+}
+
+/* Editorial label on the panel edge (DECOR-03). */
+.console-panel::after {
+  content: "POST /v1/verify";
+  position: absolute;
+  right: 1rem;
+  bottom: 0.9rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(70, 201, 177, 0.85);
+}
+
+.panel-topbar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(247, 245, 239, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.panel-topbar span {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: rgba(247, 245, 239, 0.5);
+}
+
+.console-panel pre {
+  margin: 0;
+  padding: 1.6rem 1.5rem 2.4rem;
+  color: var(--verid-mint);
+  font-family: 'SFMono-Regular', 'Menlo', 'Consolas', monospace;
+  font-size: 0.9rem;
+  line-height: 1.85;
+  overflow: auto;
+}
+
+.console-panel code {
+  font-family: inherit;
+}
+
+.dev-tools,
+.sandbox {
+  padding: 2rem 0 2.5rem;
+}
+
+.dev-tools h2,
+.sandbox h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  max-width: 760px;
+  font-size: var(--fs-section);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--verid-ivory);
+}
+
+.dev-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+/*
+  Card ecosystem, not repetition (AMENDMENT 07): the first capability is the
+  anchor (indigo-tinted, heavier), the other two are quieter planes.
+*/
+.dev-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(247, 245, 239, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+
+.dev-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(70, 201, 177, 0.35);
+}
+
+.dev-card:first-child {
+  background: rgba(77, 95, 234, 0.16);
+  border-color: rgba(77, 95, 234, 0.34);
+  grid-row: span 1;
+}
+
+.dev-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--verid-indigo-soft);
+  color: var(--verid-ink-deep);
+  font-weight: 700;
+  margin-bottom: 0.9rem;
+}
+
+.dev-icon .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.dev-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.45rem;
+  letter-spacing: -0.02em;
+  color: var(--verid-ivory);
+}
+
+.dev-card p {
+  margin: 0;
+  color: rgba(247, 245, 239, 0.78);
+}
+
+.sandbox-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+  padding: 2rem 0 4rem;
+}
+
+.sandbox-copy p:last-child {
+  margin: 0;
+  color: rgba(247, 245, 239, 0.78);
+  max-width: 44ch;
+}
+
+.key-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(247, 245, 239, 0.14);
+  border-radius: var(--radius-xl);
+  padding: 1.4rem;
+}
+
+.key-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.status-badge.success {
+  background: var(--verid-mint-soft);
+  color: var(--verid-ink);
+}
+
+.copy-btn {
+  border: 1px solid rgba(247, 245, 239, 0.3);
+  background: transparent;
+  color: var(--verid-ivory);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+}
+
+.key-card code {
+  display: block;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(15, 23, 42, 0.7);
+  color: var(--verid-ivory);
+  font-size: 0.92rem;
+  word-break: break-all;
+}
+
+@media (max-width: 880px) {
+  .developers-grid,
+  .sandbox-wrap,
+  .dev-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .developer-photo-pair {
+    grid-template-columns: 1fr;
+  }
+}

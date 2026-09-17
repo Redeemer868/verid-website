@@ -1,0 +1,33 @@
+/* layout.css — containers, layout utilities, and responsive foundation */
+
+/*
+  Responsive philosophy:
+  Mobile layouts must recompose (reorder, recrop, reshape), never merely shrink a desktop layout in place.
+  This project uses max-width media queries only, in a desktop-first cascade.
+*/
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+section {
+  padding: 110px 0;
+}
+
+section[id] {
+  scroll-margin-top: 92px;
+}
+
+@media (max-width: 600px) {
+  .wrap {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 880px) {
+  section {
+    padding: 76px 0;
+  }
+}
