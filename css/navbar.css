@@ -43,6 +43,30 @@
   box-shadow: var(--shadow-sm);
 }
 
+/* Dark hero pages keep the navigation inside the opening composition. */
+.site-nav--on-dark {
+  --nav-tone: rgba(15, 23, 42, 0.82);
+  --nav-ink: var(--verid-paper);
+  --nav-edge: rgba(247, 245, 239, 0.16);
+}
+
+.site-nav--on-dark .logo,
+.site-nav--on-dark .nav-links a,
+.site-nav--on-dark .nav-cta,
+.site-nav--on-dark .nav-toggle {
+  color: var(--verid-paper);
+}
+
+.site-nav--on-dark .nav-links a:hover,
+.site-nav--on-dark .nav-links a:focus-visible {
+  color: var(--verid-mint);
+}
+
+.site-nav--on-dark .nav-toggle:hover,
+.site-nav--on-dark .nav-toggle:focus-visible {
+  background: rgba(247, 245, 239, 0.1);
+}
+
 /* Nav row aligns to the composition grid (NAV-05 / NAV-08). */
 .site-nav nav {
   position: relative;

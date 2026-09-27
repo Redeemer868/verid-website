@@ -67,15 +67,15 @@
   color: rgba(247, 245, 239, 0.68);
 }
 
-.site-footer-dark .footer-links a {
+.site-footer .footer-links a {
   color: rgba(247, 245, 239, 0.78);
 }
 
-.site-footer-dark .footer-links a:hover {
+.site-footer .footer-links a:hover {
   color: var(--verid-mint);
 }
 
-.site-footer-dark .footer-links h3 {
+.site-footer .footer-links h3 {
   color: rgba(247, 245, 239, 0.5);
 }
 
