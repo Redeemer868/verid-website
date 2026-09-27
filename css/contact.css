@@ -1,0 +1,98 @@
+.contact-page {
+  background: var(--verid-ivory);
+}
+
+.contact-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(88px, 13vw, 160px) 0 clamp(36px, 5vw, 64px);
+  background: var(--verid-ivory);
+}
+
+.contact-hero::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  right: -12%;
+  width: 58%;
+  height: 120%;
+  background: radial-gradient(circle at center, var(--verid-mint-soft), rgba(221, 245, 238, 0));
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.contact-grid {
+  position: relative;
+  z-index: var(--z-content);
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+  gap: clamp(2rem, 8vw, 8rem);
+  align-items: start;
+}
+
+.contact-copy h1 {
+  max-width: 10ch;
+}
+
+.contact-copy > p:not(.eyebrow) {
+  max-width: 48ch;
+  margin-top: 1.5rem;
+  color: var(--verid-muted);
+  font-size: 1.08rem;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.contact-actions .btn-primary {
+  background: var(--verid-indigo);
+  color: var(--verid-paper);
+}
+
+.contact-actions .btn-secondary {
+  color: var(--verid-ink);
+  border-color: var(--verid-border);
+}
+
+.contact-options {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-option {
+  padding: 1.5rem;
+  background: var(--verid-paper);
+  border: 1px solid var(--verid-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-option h2 {
+  font-size: 1.35rem;
+}
+
+.contact-option p {
+  margin-top: 0.55rem;
+  color: var(--verid-muted);
+}
+
+.contact-option a {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--verid-indigo);
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-copy h1 {
+    max-width: 14ch;
+  }
+}

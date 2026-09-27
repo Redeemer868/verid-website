@@ -278,6 +278,84 @@
   transform: translateY(-2px);
 }
 
+.home-contact {
+  padding: clamp(72px, 10vw, 130px) 0;
+  color: var(--verid-paper);
+  background: linear-gradient(135deg, var(--verid-indigo-dark), var(--verid-indigo));
+}
+
+.home-contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.82fr);
+  gap: clamp(2.5rem, 8vw, 8rem);
+  align-items: start;
+}
+
+.home-contact-copy h2 {
+  max-width: 14ch;
+  color: var(--verid-paper);
+}
+
+.home-contact-copy > p:not(.eyebrow) {
+  max-width: 48ch;
+  margin-top: 1.25rem;
+  color: rgba(247, 245, 239, 0.76);
+}
+
+.home-contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.home-contact-actions .btn-secondary {
+  color: var(--verid-paper);
+}
+
+.home-contact-options {
+  display: grid;
+  gap: 1.4rem;
+  padding-top: 0.5rem;
+}
+
+.home-contact-options article {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1rem;
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid rgba(247, 245, 239, 0.2);
+}
+
+.home-contact-number {
+  color: var(--verid-mint);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.home-contact-options h3 {
+  color: var(--verid-paper);
+  font-size: 1.05rem;
+}
+
+.home-contact-options p {
+  margin-top: 0.45rem;
+  color: rgba(247, 245, 239, 0.68);
+  font-size: 0.95rem;
+}
+
+.home-contact-link {
+  color: var(--verid-mint);
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .home-contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /*
   IMAGE-01: the subject crosses the indigo/ivory seam. It is pulled left
   into the indigo field so the photograph physically bridges both surfaces.

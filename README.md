@@ -2,27 +2,28 @@
 
 Verid is a digital identity verification and trust infrastructure concept — an API-first platform built for businesses that can't afford to get "is this really them?" wrong, or slow.
 
-This repository contains the front-end submission for Web Dev Challenge — a 5-page marketing website designed and built from the ground up around one idea: **prove the product's speed, don't just claim it.**
+This repository contains the front-end submission for Web Dev Challenge — a multi-page marketing website designed and built from the ground up around one idea: **prove the product's speed, don't just claim it.**
 
 ---
 
 ## Live Site
-**[View the live site here](#)** ← replace with your GitHub Pages / Netlify link once deployed
+**https://verid-verify-trust-platform.netlify.app(#)** ← replace with your GitHub Pages / Netlify link once deployed
 ---
 
 ## The Idea
 Manual identity verification is slow — what could resolve in seconds instead takes days, and every extra day of onboarding friction costs businesses real customers. Verid's pitch is simple: one API call, three checks (document authentication, face match, liveness detection), under two seconds, with a full audit trail for compliance teams.
 
-Rather than just describing that speed, the site's homepage includes a **live, working front-end demo** of the verification flow — idle → uploading → verifying → verified — so the core promise is something a visitor experiences, not just reads.
+The homepage keeps that promise clear and focused, while the dedicated product and developer pages carry the deeper verification flow, API, and sandbox detail.
 
 ## Pages
 | Page | Purpose |
 |---|---|
-| **Home** (`index.html`) | Proves the core promise with a live interactive verification demo |
+| **Home** (`index.html`) | Concise brand introduction, platform preview, trust proof, solution preview, and primary CTA |
 | **Platform** (`platform.html`) | Explains the mechanics — document auth, face match, liveness |
 | **Solutions** (`solutions.html`) | Maps real customer problems to the product that solves them, by industry |
 | **Developers** (`developers.html`) | A self-serve, zero-sales-call path — code samples, sandbox key generator |
 | **Company** (`company.html`) | Mission, vision, and the story behind the brand |
+| **Contact** (`contact.html`) | Business, demo, and developer enquiry paths |
 
 ## Design System
 - **Typography:** Instrument Sans throughout — heavy display weights for headlines, calm body weights for copy
@@ -58,6 +59,7 @@ and visit `http://localhost:8000`.
 ├── solutions.html          # Industry mapping
 ├── developers.html         # Developer / sandbox path
 ├── company.html            # Mission & story
+├── contact.html            # Demo and business enquiries
 ├── README.md
 ├── .gitignore
 │
@@ -73,7 +75,8 @@ and visit `http://localhost:8000`.
 │   ├── platform.css        #   Platform-specific compositions
 │   ├── solutions.css       #   Solutions-specific compositions
 │   ├── developers.css      #   Developers-specific compositions
-│   └── company.css         #   Company-specific compositions
+│   ├── company.css         #   Company-specific compositions
+│   └── contact.css         #   Contact-specific compositions
 │
 ├── js/
 │   ├── nav.js              #   navigation, mobile menu, desktop dialogs
