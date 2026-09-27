@@ -20,6 +20,11 @@ section[id] {
   scroll-margin-top: 92px;
 }
 
+/* Let the final content composition hand off to the footer without a dead band. */
+main > section:last-child {
+  padding-bottom: clamp(52px, 6vw, 82px);
+}
+
 @media (max-width: 600px) {
   .wrap {
     padding: 0 20px;

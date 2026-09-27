@@ -7,9 +7,10 @@
 */
 .site-footer {
   position: relative;
+  margin-top: clamp(-34px, -3vw, -18px);
   background: var(--verid-ink-deep);
   border-top: 0;
-  padding: clamp(56px, 8vw, 90px) 0;
+  padding: clamp(78px, 10vw, 116px) 0 clamp(56px, 8vw, 90px);
   overflow: hidden;
   color: var(--verid-ivory);
 }
@@ -20,10 +21,15 @@
   top: -1px;
   left: 0;
   right: 0;
-  height: clamp(60px, 8vw, 110px);
+  height: clamp(46px, 6vw, 78px);
   background: var(--verid-ivory);
   border-radius: 0 0 50% 50% / 0 0 100% 100%;
   z-index: var(--z-decorative);
+}
+
+/* Home closes on an indigo field, so its curve must continue that field. */
+.home-page .footer-swell {
+  background: var(--verid-indigo);
 }
 
 .site-footer-dark {

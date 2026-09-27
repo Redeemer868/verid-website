@@ -266,7 +266,7 @@
   position: relative;
   padding: clamp(90px, 13vw, 170px) 0;
   overflow: hidden;
-  background: var(--verid-ivory);
+  background: var(--verid-ink-deep);
 }
 
 .proof-field {
